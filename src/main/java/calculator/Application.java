@@ -13,6 +13,7 @@ public class Application {
                 return;
             }
             if (input.startsWith("//")) {
+                if(input.indexOf("\n") != 3) throw new IllegalArgumentException("커스텀 구분자는 하나만 가능합니다.");
                 regex = String.valueOf(input.charAt(2));
                 input = input.substring(4);
             }
