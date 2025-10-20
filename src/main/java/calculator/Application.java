@@ -10,7 +10,10 @@ public class Application {
             System.out.println("결과 : 0");
             return;
         }
-
+        if(input.startsWith("//")){
+            regex = String.valueOf(input.charAt(2));
+            input = input.substring(4);
+        }
         String[] tokens = input.split(regex);
     }
 }
