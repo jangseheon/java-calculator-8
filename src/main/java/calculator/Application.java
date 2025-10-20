@@ -18,11 +18,15 @@ public class Application {
         int result = 0;
         String regex = "[,:]";
 
-
         if (input.startsWith("//")) {
-            if(input.indexOf("\n") != 3) throw new IllegalArgumentException("커스텀 구분자는 하나만 가능합니다.");
-            regex = String.valueOf(input.charAt(2));
-            input = input.substring(4);
+            int index = input.indexOf("\n");
+            if(index < 0) throw new IllegalArgumentException("커스텀 구분자 형식 오류입니다.");
+            String new_regex = input.substring(2,index);
+            if(new_regex.length() != 1) throw new IllegalArgumentException("커스텀 구분자는 하나만 가능합니다.");
+            String Meta = ".^$*+?()[]{}|\\\\";
+            if(Meta.contains(new_regex)) regex = "\\\\" + new_regex;
+            else regex = new_regex;
+            input = input.substring(index+1);
         }
         String[] tokens = input.split(regex);
         for (String s : tokens) {
