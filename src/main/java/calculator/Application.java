@@ -26,9 +26,10 @@ public class Application {
         }
         String[] tokens = input.split(regex);
         for (String s : tokens) {
-            if (!(s.charAt(0) >= '1' && s.charAt(0) <= '9'))
+            int n = Integer.parseInt(s);
+            if(n <= 0)
                 throw new IllegalArgumentException("양수가 아닌 값은 들어갈 수 없습니다.");
-            result += Integer.parseInt(s);
+            result += n;
         }
         return result;
     }
